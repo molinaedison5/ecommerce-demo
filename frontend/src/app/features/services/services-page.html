@@ -1,0 +1,18 @@
+<section class="page">
+  <header>
+    <h1>Servicios</h1>
+    <p>El módulo Bookings reserva estos cuidados. Esta pantalla solo marca el límite del módulo.</p>
+  </header>
+  <div class="grid">
+    @for (offering of offerings; track offering.kind) {
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>{{ offering.kind }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ offering.detail }}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+</section>

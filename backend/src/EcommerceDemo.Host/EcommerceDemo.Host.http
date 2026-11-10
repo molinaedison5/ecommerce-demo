@@ -1,0 +1,15 @@
+@EcommerceDemo.Host_HostAddress = http://localhost:8080
+
+GET {{EcommerceDemo.Host_HostAddress}}/api/catalog/products?page=1&pageSize=20
+Accept: application/json
+
+###
+
+GET {{EcommerceDemo.Host_HostAddress}}/health
+
+###
+
+GET {{EcommerceDemo.Host_HostAddress}}/api/payments/provider
+Accept: application/json
+
+###

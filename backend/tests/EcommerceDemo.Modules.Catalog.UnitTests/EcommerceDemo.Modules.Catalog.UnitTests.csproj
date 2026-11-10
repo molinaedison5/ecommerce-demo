@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Modules/Catalog/EcommerceDemo.Modules.Catalog.Application/EcommerceDemo.Modules.Catalog.Application.csproj" />
+    <ProjectReference Include="../../src/Modules/Catalog/EcommerceDemo.Modules.Catalog.Domain/EcommerceDemo.Modules.Catalog.Domain.csproj" />
+    <ProjectReference Include="../../src/Modules/Catalog/EcommerceDemo.Modules.Catalog.Infrastructure/EcommerceDemo.Modules.Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/BuildingBlocks/EcommerceDemo.BuildingBlocks.Domain/EcommerceDemo.BuildingBlocks.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" />
+  </ItemGroup>
+</Project>

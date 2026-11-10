@@ -1,0 +1,28 @@
+.page header {
+  margin-bottom: 1.25rem;
+}
+
+h1 {
+  margin: 0 0 0.35rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.price {
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.error {
+  color: var(--mat-sys-error);
+}

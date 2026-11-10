@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Modules/Payments/EcommerceDemo.Modules.Payments.Application/EcommerceDemo.Modules.Payments.Application.csproj" />
+    <ProjectReference Include="../../src/Modules/Payments/EcommerceDemo.Modules.Payments.Domain/EcommerceDemo.Modules.Payments.Domain.csproj" />
+    <ProjectReference Include="../../src/Modules/Payments/EcommerceDemo.Modules.Payments.Infrastructure/EcommerceDemo.Modules.Payments.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/BuildingBlocks/EcommerceDemo.BuildingBlocks.Domain/EcommerceDemo.BuildingBlocks.Domain.csproj" />
+  </ItemGroup>
+</Project>
