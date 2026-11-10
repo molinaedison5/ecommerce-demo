@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <OpenApiDocumentsDirectory>$(MSBuildThisFileDirectory)../../../contracts/</OpenApiDocumentsDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Formatting.Compact" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Modules/Bookings/EcommerceDemo.Modules.Bookings.Infrastructure/EcommerceDemo.Modules.Bookings.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Cart/EcommerceDemo.Modules.Cart.Infrastructure/EcommerceDemo.Modules.Cart.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Catalog/EcommerceDemo.Modules.Catalog.Infrastructure/EcommerceDemo.Modules.Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Orders/EcommerceDemo.Modules.Orders.Infrastructure/EcommerceDemo.Modules.Orders.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Payments/EcommerceDemo.Modules.Payments.Infrastructure/EcommerceDemo.Modules.Payments.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Users/EcommerceDemo.Modules.Users.Infrastructure/EcommerceDemo.Modules.Users.Infrastructure.csproj" />
+    <ProjectReference Include="../BuildingBlocks/EcommerceDemo.BuildingBlocks.Infrastructure/EcommerceDemo.BuildingBlocks.Infrastructure.csproj" />
+  </ItemGroup>
+  <Target Name="PublishOpenApiContract" AfterTargets="GenerateOpenApiDocuments">
+    <Copy
+      SourceFiles="$(OpenApiDocumentsDirectory)EcommerceDemo.Host.json"
+      DestinationFiles="$(OpenApiDocumentsDirectory)openapi.json"
+      Condition="Exists('$(OpenApiDocumentsDirectory)EcommerceDemo.Host.json')"
+      SkipUnchangedFiles="true" />
+  </Target>
+</Project>

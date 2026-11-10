@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../EcommerceDemo.Modules.Catalog.Domain/EcommerceDemo.Modules.Catalog.Domain.csproj" />
+    <ProjectReference Include="../../../BuildingBlocks/EcommerceDemo.BuildingBlocks.Application/EcommerceDemo.BuildingBlocks.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+  </ItemGroup>
+</Project>

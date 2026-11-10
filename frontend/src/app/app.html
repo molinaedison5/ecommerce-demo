@@ -1,0 +1,15 @@
+<div class="shell">
+  <mat-toolbar>
+    <a class="brand" routerLink="/catalog">Ecommerce Demo</a>
+    <span class="tagline">Cuidado de mascotas</span>
+    <nav aria-label="Principal">
+      <a mat-button routerLink="/catalog" routerLinkActive="active">Catálogo</a>
+      <a mat-button routerLink="/services" routerLinkActive="active">Servicios</a>
+      <a mat-button routerLink="/cart" routerLinkActive="active">Carrito</a>
+      <a mat-button routerLink="/account" routerLinkActive="active">Cuenta</a>
+    </nav>
+  </mat-toolbar>
+  <main>
+    <router-outlet />
+  </main>
+</div>
