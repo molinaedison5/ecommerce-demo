@@ -1,0 +1,13 @@
+<section class="k9-panel" aria-labelledby="mapa-titulo">
+  <p class="k9-chip">Ejemplo</p>
+  <h2 id="mapa-titulo">Cómo llegar</h2>
+  <p>
+    {{ site.address.line }}. {{ site.address.locality }}, {{ site.address.region }},
+    {{ site.address.country }}.
+  </p>
+  <iframe class="k9-map" [title]="site.map.title" [src]="mapUrl" loading="lazy"></iframe>
+  <p class="k9-note">
+    {{ site.map.caption }}
+    <a [href]="site.map.openUrl" target="_blank" rel="noopener noreferrer">Abrir el mapa</a>
+  </p>
+</section>

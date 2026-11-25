@@ -20,6 +20,7 @@
     <ProjectReference Include="../Modules/Bookings/EcommerceDemo.Modules.Bookings.Infrastructure/EcommerceDemo.Modules.Bookings.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Cart/EcommerceDemo.Modules.Cart.Infrastructure/EcommerceDemo.Modules.Cart.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Catalog/EcommerceDemo.Modules.Catalog.Infrastructure/EcommerceDemo.Modules.Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Inquiries/EcommerceDemo.Modules.Inquiries.Infrastructure/EcommerceDemo.Modules.Inquiries.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Orders/EcommerceDemo.Modules.Orders.Infrastructure/EcommerceDemo.Modules.Orders.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Payments/EcommerceDemo.Modules.Payments.Infrastructure/EcommerceDemo.Modules.Payments.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Users/EcommerceDemo.Modules.Users.Infrastructure/EcommerceDemo.Modules.Users.Infrastructure.csproj" />

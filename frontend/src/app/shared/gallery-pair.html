@@ -1,0 +1,14 @@
+<article class="k9-pair">
+  <h3>{{ pair().title }}</h3>
+  <div class="k9-pair-grid">
+    <figure>
+      <img [src]="pair().beforeSrc" [alt]="pair().beforeAlt" width="320" height="240" />
+      <figcaption>Antes</figcaption>
+    </figure>
+    <figure>
+      <img [src]="pair().afterSrc" [alt]="pair().afterAlt" width="320" height="240" />
+      <figcaption>Después</figcaption>
+    </figure>
+  </div>
+  <p class="k9-note">{{ pair().caption }}</p>
+</article>

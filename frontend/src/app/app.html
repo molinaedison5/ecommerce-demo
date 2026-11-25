@@ -1,15 +1,57 @@
-<div class="shell">
-  <mat-toolbar>
-    <a class="brand" routerLink="/catalog">Ecommerce Demo</a>
-    <span class="tagline">Cuidado de mascotas</span>
-    <nav aria-label="Principal">
-      <a mat-button routerLink="/catalog" routerLinkActive="active">Catálogo</a>
-      <a mat-button routerLink="/services" routerLinkActive="active">Servicios</a>
-      <a mat-button routerLink="/cart" routerLinkActive="active">Carrito</a>
-      <a mat-button routerLink="/account" routerLinkActive="active">Cuenta</a>
-    </nav>
-  </mat-toolbar>
-  <main>
+<div class="k9-shell">
+  <a class="k9-skip" href="#contenido">Saltar al contenido</a>
+  <header class="k9-header">
+    <div class="k9-wrap k9-header-bar">
+      <a class="k9-brand" routerLink="/">
+        <img src="/media/mark.svg" alt="" width="44" height="44" />
+        <span>
+          <strong>Centro K-9</strong>
+          <small>Latacunga</small>
+        </span>
+      </a>
+      <button
+        type="button"
+        class="k9-nav-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="nav-principal"
+      >
+        Menú
+      </button>
+      <nav id="nav-principal" class="k9-nav" [class.is-open]="menuOpen()" aria-label="Principal">
+        <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+        <a routerLink="/servicios" routerLinkActive="is-active">Servicios</a>
+        <a routerLink="/galeria" routerLinkActive="is-active">Galería</a>
+        <a routerLink="/nosotros" routerLinkActive="is-active">Nosotros</a>
+        <a routerLink="/catalog" routerLinkActive="is-active">Productos</a>
+        <a class="k9-nav-cta" routerLink="/clase-gratis" routerLinkActive="is-active">Clase gratis</a>
+      </nav>
+    </div>
+  </header>
+  <p class="k9-banner">{{ exampleNotice }}</p>
+  <main id="contenido">
     <router-outlet />
   </main>
+  <footer class="k9-footer">
+    <div class="k9-wrap k9-footer-grid">
+      <div>
+        <strong>{{ site.brand.shortName }}</strong>
+        <p>{{ site.brand.slogan }}</p>
+        <p>
+          {{ site.address.line }}<br />
+          {{ site.address.locality }}, {{ site.address.region }}, {{ site.address.country }}
+        </p>
+      </div>
+      <div>
+        <p>
+          <a [href]="'tel:' + phone.e164">{{ phone.display }}</a>
+        </p>
+        <p>
+          <a [href]="footerWhatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </p>
+        <p>Lunes a sábado, horario de ejemplo en la portada.</p>
+      </div>
+    </div>
+  </footer>
+  <app-whatsapp-button />
 </div>

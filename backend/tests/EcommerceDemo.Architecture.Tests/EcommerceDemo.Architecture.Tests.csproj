@@ -27,6 +27,9 @@
     <ProjectReference Include="../../src/Modules/Catalog/EcommerceDemo.Modules.Catalog.Domain/EcommerceDemo.Modules.Catalog.Domain.csproj" />
     <ProjectReference Include="../../src/Modules/Catalog/EcommerceDemo.Modules.Catalog.Application/EcommerceDemo.Modules.Catalog.Application.csproj" />
     <ProjectReference Include="../../src/Modules/Catalog/EcommerceDemo.Modules.Catalog.Infrastructure/EcommerceDemo.Modules.Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/Modules/Inquiries/EcommerceDemo.Modules.Inquiries.Domain/EcommerceDemo.Modules.Inquiries.Domain.csproj" />
+    <ProjectReference Include="../../src/Modules/Inquiries/EcommerceDemo.Modules.Inquiries.Application/EcommerceDemo.Modules.Inquiries.Application.csproj" />
+    <ProjectReference Include="../../src/Modules/Inquiries/EcommerceDemo.Modules.Inquiries.Infrastructure/EcommerceDemo.Modules.Inquiries.Infrastructure.csproj" />
     <ProjectReference Include="../../src/Modules/Orders/EcommerceDemo.Modules.Orders.Domain/EcommerceDemo.Modules.Orders.Domain.csproj" />
     <ProjectReference Include="../../src/Modules/Orders/EcommerceDemo.Modules.Orders.Application/EcommerceDemo.Modules.Orders.Application.csproj" />
     <ProjectReference Include="../../src/Modules/Orders/EcommerceDemo.Modules.Orders.Infrastructure/EcommerceDemo.Modules.Orders.Infrastructure.csproj" />

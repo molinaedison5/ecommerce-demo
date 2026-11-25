@@ -6,6 +6,8 @@ using EcommerceDemo.Modules.Cart.Application;
 using EcommerceDemo.Modules.Cart.Domain;
 using EcommerceDemo.Modules.Catalog.Application.Products;
 using EcommerceDemo.Modules.Catalog.Domain.Products;
+using EcommerceDemo.Modules.Inquiries.Application.FreeClassRequests;
+using EcommerceDemo.Modules.Inquiries.Domain.FreeClassRequests;
 using EcommerceDemo.Modules.Orders.Application;
 using EcommerceDemo.Modules.Orders.Domain;
 using EcommerceDemo.Modules.Payments.Application;
@@ -24,6 +26,7 @@ public class ModuleBoundaryTests
         "EcommerceDemo.Modules.Bookings",
         "EcommerceDemo.Modules.Cart",
         "EcommerceDemo.Modules.Catalog",
+        "EcommerceDemo.Modules.Inquiries",
         "EcommerceDemo.Modules.Orders",
         "EcommerceDemo.Modules.Payments",
         "EcommerceDemo.Modules.Users",
@@ -34,6 +37,7 @@ public class ModuleBoundaryTests
         typeof(ServiceOffering).Assembly,
         typeof(Cart).Assembly,
         typeof(Product).Assembly,
+        typeof(FreeClassRequest).Assembly,
         typeof(Order).Assembly,
         typeof(PaymentStatus).Assembly,
         typeof(UserProfile).Assembly,
@@ -44,6 +48,7 @@ public class ModuleBoundaryTests
         typeof(BookingsApplication).Assembly,
         typeof(CartApplication).Assembly,
         typeof(ListProductsHandler).Assembly,
+        typeof(SubmitFreeClassRequestHandler).Assembly,
         typeof(OrdersApplication).Assembly,
         typeof(IPaymentGateway).Assembly,
         typeof(IAuthService).Assembly,
@@ -56,6 +61,7 @@ public class ModuleBoundaryTests
         typeof(EcommerceDemo.Modules.Bookings.BookingsModule).Assembly,
         typeof(EcommerceDemo.Modules.Cart.CartModule).Assembly,
         typeof(EcommerceDemo.Modules.Catalog.CatalogModule).Assembly,
+        typeof(EcommerceDemo.Modules.Inquiries.InquiriesModule).Assembly,
         typeof(EcommerceDemo.Modules.Orders.OrdersModule).Assembly,
         typeof(EcommerceDemo.Modules.Payments.PaymentsModule).Assembly,
         typeof(EcommerceDemo.Modules.Users.UsersModule).Assembly,

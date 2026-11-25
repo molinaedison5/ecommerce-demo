@@ -5,7 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
 
+import { siteContent } from '../../content/site-content';
 import { CatalogApi, PagedProducts } from '../../core/catalog-api';
+import { SeoService } from '../../core/seo';
 
 type CatalogView =
   | { status: 'loading' }
@@ -21,6 +23,10 @@ type CatalogView =
 })
 export class CatalogPage {
   private readonly catalog = inject(CatalogApi);
+
+  constructor() {
+    inject(SeoService).apply(siteContent.seo.catalog);
+  }
 
   protected readonly view = toSignal(
     this.catalog.listProducts().pipe(

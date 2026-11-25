@@ -1,25 +1,19 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
+import { siteContent } from '../../content/site-content';
+import { SeoService } from '../../core/seo';
+import { ServiceCard } from '../../shared/service-card';
 
 @Component({
   selector: 'app-services-page',
-  imports: [MatCardModule],
+  imports: [ServiceCard],
   templateUrl: './services-page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesPage {
-  protected readonly offerings = [
-    {
-      kind: 'Peluquería',
-      detail: 'Baño, corte y cepillado. La reserva todavía no está conectada.',
-    },
-    {
-      kind: 'Visita veterinaria',
-      detail: 'Consulta general. El calendario de citas llega en un módulo posterior.',
-    },
-    {
-      kind: 'Guardería',
-      detail: 'Cuidado por horas o por día. El carrito de reservas todavía es un cascarón.',
-    },
-  ];
+  protected readonly site = siteContent;
+
+  constructor() {
+    inject(SeoService).apply(siteContent.seo.services);
+  }
 }

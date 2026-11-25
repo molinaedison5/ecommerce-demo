@@ -1,0 +1,28 @@
+<section class="k9-page">
+  <div class="k9-wrap k9-split">
+    <div class="k9-prose">
+      <p class="k9-eyebrow">{{ site.address.locality }} · {{ site.address.region }}</p>
+      <h1>Sobre nosotros</h1>
+      <p class="k9-lead">{{ site.brand.proposal }}</p>
+      <p>
+        {{ site.brand.name }} está en {{ site.address.line }}, {{ site.address.locality }},
+        {{ site.address.region }}, {{ site.address.country }}. {{ site.brand.experience }}
+      </p>
+      <p>{{ site.brand.slogan }}</p>
+      <p>
+        Teléfono
+        <a [href]="'tel:' + phone.e164">{{ phone.display }}</a>
+      </p>
+      <div class="k9-actions">
+        <a class="k9-btn k9-btn-clay" routerLink="/clase-gratis">{{ site.brand.hook }}</a>
+        <a class="k9-btn k9-btn-pine" [href]="whatsappHref" target="_blank" rel="noopener noreferrer">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+    <app-hours-panel />
+  </div>
+  <div class="k9-wrap">
+    <app-site-map />
+  </div>
+</section>

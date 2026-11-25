@@ -1,0 +1,89 @@
+<section class="k9-page">
+  <div class="k9-wrap k9-form-layout">
+    <header class="k9-section-head">
+      <p class="k9-eyebrow">Adiestramiento canino en Latacunga</p>
+      <h1>{{ site.brand.hook }}</h1>
+      <p>
+        {{ site.brand.proposal }} Deja los datos y los guardamos. Si te queda más fácil, sigue la
+        conversación por WhatsApp con el mismo mensaje.
+      </p>
+    </header>
+
+    @if (state(); as current) {
+    @if (current.status === 'saved') {
+      <div class="k9-card k9-success" role="status">
+        <h2>Guardamos tu solicitud</h2>
+        <p>
+          La clase gratis no reserva un horario todavía. Escríbenos por WhatsApp para coordinar el
+          día.
+        </p>
+        <div class="k9-actions">
+          <a class="k9-btn k9-btn-clay" [href]="whatsappHref()" target="_blank" rel="noopener noreferrer">
+            Continuar por WhatsApp
+          </a>
+          <button type="button" class="k9-btn k9-btn-line" (click)="editAgain()">Enviar otra</button>
+        </div>
+      </div>
+    } @else {
+      <form class="k9-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+        <label class="k9-field" [class.is-invalid]="invalid('ownerName')">
+          <span>Nombre del dueño</span>
+          <input id="ownerName" type="text" formControlName="ownerName" autocomplete="name" maxlength="120" />
+          @if (invalid('ownerName')) {
+            <small role="alert">{{ message('ownerName') }}</small>
+          }
+        </label>
+
+        <label class="k9-field" [class.is-invalid]="invalid('phone')">
+          <span>Teléfono</span>
+          <input id="phone" type="tel" formControlName="phone" autocomplete="tel" maxlength="32" />
+          @if (invalid('phone')) {
+            <small role="alert">{{ message('phone') }}</small>
+          }
+        </label>
+
+        <label class="k9-field" [class.is-invalid]="invalid('breed')">
+          <span>Raza</span>
+          <input id="breed" type="text" formControlName="breed" maxlength="80" />
+          @if (invalid('breed')) {
+            <small role="alert">{{ message('breed') }}</small>
+          }
+        </label>
+
+        <label class="k9-field" [class.is-invalid]="invalid('dogAge')">
+          <span>Edad del perro</span>
+          <input id="dogAge" type="text" formControlName="dogAge" maxlength="40" placeholder="Por ejemplo, 8 meses" />
+          @if (invalid('dogAge')) {
+            <small role="alert">{{ message('dogAge') }}</small>
+          }
+        </label>
+
+        <label class="k9-field" [class.is-invalid]="invalid('behaviorProblem')">
+          <span>Problema de conducta</span>
+          <textarea id="behaviorProblem" formControlName="behaviorProblem" rows="5" maxlength="2000"></textarea>
+          @if (invalid('behaviorProblem')) {
+            <small role="alert">{{ message('behaviorProblem') }}</small>
+          }
+        </label>
+
+        @if (current.status === 'error') {
+          <p class="k9-form-error" role="alert">{{ current.message }}</p>
+        }
+
+        <div class="k9-actions">
+          <button class="k9-btn k9-btn-clay" type="submit" [disabled]="current.status === 'saving'">
+            @if (current.status === 'saving') {
+              Guardando…
+            } @else {
+              Guardar solicitud
+            }
+          </button>
+          <a class="k9-btn k9-btn-line" [href]="whatsappHref()" target="_blank" rel="noopener noreferrer">
+            Continuar por WhatsApp
+          </a>
+        </div>
+      </form>
+    }
+    }
+  </div>
+</section>
