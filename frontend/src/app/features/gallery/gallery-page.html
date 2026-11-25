@@ -1,0 +1,17 @@
+<section class="k9-page">
+  <div class="k9-wrap">
+    <header class="k9-section-head">
+      <p class="k9-chip">Ejemplo</p>
+      <h1>Antes y después</h1>
+      <p>
+        Dibujos de ejemplo para esta fase. Cuando haya fotos del centro, sustituye estas
+        ilustraciones.
+      </p>
+    </header>
+    <div class="k9-gallery">
+      @for (pair of site.gallery; track pair.id) {
+        <app-gallery-pair [pair]="pair" />
+      }
+    </div>
+  </div>
+</section>

@@ -2,7 +2,7 @@
   "openapi": "3.1.1",
   "info": {
     "title": "Ecommerce Demo API",
-    "description": "Pet-care commerce API. Modules: Catalog, Bookings, Cart, Orders, Payments, Users. Payments use IPaymentGateway; the bundled provider is fake.",
+    "description": "Pet-care commerce API. Modules: Catalog, Inquiries, Bookings, Cart, Orders, Payments, Users. Payments use IPaymentGateway; the bundled provider is fake.",
     "version": "v1"
   },
   "paths": {
@@ -109,6 +109,120 @@
               "application/problem+json": {
                 "schema": {
                   "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/inquiries/free-classes": {
+      "post": {
+        "tags": [
+          "Inquiries"
+        ],
+        "summary": "Store a free training-class request from the public site.",
+        "operationId": "SubmitFreeClassRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SubmitFreeClassRequestCommand"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FreeClassRequestDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Inquiries"
+        ],
+        "summary": "List stored free-class requests. Requires the existing JWT; there is no admin screen yet.",
+        "operationId": "ListFreeClassRequests",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedResultOfFreeClassRequestDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -245,6 +359,43 @@
           }
         }
       },
+      "FreeClassRequestDto": {
+        "required": [
+          "id",
+          "ownerName",
+          "phone",
+          "breed",
+          "dogAge",
+          "behaviorProblem",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ownerName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "breed": {
+            "type": "string"
+          },
+          "dogAge": {
+            "type": "string"
+          },
+          "behaviorProblem": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "HttpValidationProblemDetails": {
         "type": "object",
         "properties": {
@@ -304,6 +455,47 @@
           },
           "password": {
             "type": "string"
+          }
+        }
+      },
+      "PagedResultOfFreeClassRequestDto": {
+        "required": [
+          "items",
+          "page",
+          "pageSize",
+          "totalCount"
+        ],
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FreeClassRequestDto"
+            }
+          },
+          "page": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "pageSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "totalCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
           }
         }
       },
@@ -453,6 +645,33 @@
           }
         }
       },
+      "SubmitFreeClassRequestCommand": {
+        "required": [
+          "ownerName",
+          "phone",
+          "breed",
+          "dogAge",
+          "behaviorProblem"
+        ],
+        "type": "object",
+        "properties": {
+          "ownerName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "breed": {
+            "type": "string"
+          },
+          "dogAge": {
+            "type": "string"
+          },
+          "behaviorProblem": {
+            "type": "string"
+          }
+        }
+      },
       "UserProfile": {
         "required": [
           "id",
@@ -484,6 +703,9 @@
     },
     {
       "name": "Catalog"
+    },
+    {
+      "name": "Inquiries"
     },
     {
       "name": "Auth"

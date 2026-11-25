@@ -1,0 +1,38 @@
+<article class="k9-card">
+  <p class="k9-chip">Ejemplo</p>
+  <h3>
+    <a [routerLink]="['/servicios', service().slug]">{{ service().name }}</a>
+  </h3>
+  <p class="k9-price">
+    <strong>{{ service().priceFrom }}</strong>
+    <span>{{ service().priceDetail }}</span>
+  </p>
+  <p>{{ service().summary }}</p>
+  <ul>
+    @for (item of service().includes; track item) {
+      <li>{{ item }}</li>
+    }
+  </ul>
+  @if (service().requirements.length > 0) {
+    <p class="k9-requirements">Requisitos</p>
+    <ul>
+      @for (requirement of service().requirements; track requirement) {
+        <li>{{ requirement }}</li>
+      }
+    </ul>
+  }
+  <div class="k9-actions">
+    <a class="k9-btn k9-btn-pine" [routerLink]="['/servicios', service().slug]">Ver servicio</a>
+    <a
+      class="k9-btn k9-btn-line"
+      [href]="link(service().whatsappMessage)"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      WhatsApp
+    </a>
+    @if (service().catalogLink) {
+      <a class="k9-btn k9-btn-line" routerLink="/catalog">Ver catálogo</a>
+    }
+  </div>
+</article>

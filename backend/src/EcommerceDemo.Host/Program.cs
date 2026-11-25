@@ -3,6 +3,7 @@ using EcommerceDemo.BuildingBlocks.Infrastructure.Health;
 using EcommerceDemo.Modules.Bookings;
 using EcommerceDemo.Modules.Cart;
 using EcommerceDemo.Modules.Catalog;
+using EcommerceDemo.Modules.Inquiries;
 using EcommerceDemo.Modules.Orders;
 using EcommerceDemo.Modules.Payments;
 using EcommerceDemo.Modules.Users;
@@ -24,6 +25,7 @@ builder.Host.UseSerilog((_, configuration) =>
 
 builder.Services.AddAppCaching(builder.Configuration);
 builder.Services.AddCatalogModule(builder.Configuration);
+builder.Services.AddInquiriesModule(builder.Configuration);
 builder.Services.AddBookingsModule(builder.Configuration);
 builder.Services.AddCartModule(builder.Configuration);
 builder.Services.AddOrdersModule(builder.Configuration);
@@ -38,7 +40,7 @@ builder.Services.AddOpenApi(options =>
         document.Info.Title = "Ecommerce Demo API";
         document.Info.Version = "v1";
         document.Info.Description =
-            "Pet-care commerce API. Modules: Catalog, Bookings, Cart, Orders, Payments, Users. Payments use IPaymentGateway; the bundled provider is fake.";
+            "Pet-care commerce API. Modules: Catalog, Inquiries, Bookings, Cart, Orders, Payments, Users. Payments use IPaymentGateway; the bundled provider is fake.";
         return Task.CompletedTask;
     });
 });
@@ -72,6 +74,7 @@ app.UseSwaggerUI(options =>
 app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
 app.MapHealthChecks("/health");
 app.MapCatalogEndpoints();
+app.MapInquiriesEndpoints();
 app.MapBookingsEndpoints();
 app.MapCartEndpoints();
 app.MapOrdersEndpoints();
@@ -89,6 +92,7 @@ static async Task InitializeDatabasesAsync(WebApplication app)
         {
             app.Logger.LogInformation("Applying module database migrations");
             await CatalogModule.InitializeDatabaseAsync(app.Services);
+            await InquiriesModule.InitializeDatabaseAsync(app.Services);
             await UsersModule.InitializeDatabaseAsync(app.Services);
             return;
         }

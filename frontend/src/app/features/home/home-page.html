@@ -1,0 +1,108 @@
+<section class="k9-hero">
+  <div class="k9-wrap k9-hero-grid">
+    <div>
+      <p class="k9-eyebrow">San Buenaventura · Latacunga · Cotopaxi</p>
+      <h1>{{ site.brand.hook }}</h1>
+      <p class="k9-slogan">{{ site.brand.slogan }}</p>
+      <p class="k9-lead">{{ site.brand.proposal }}</p>
+      <p>{{ site.brand.experience }}</p>
+      <div class="k9-actions">
+        <a class="k9-btn k9-btn-clay" routerLink="/clase-gratis">{{ site.brand.hook }}</a>
+        <a class="k9-btn k9-btn-ghost" [href]="whatsappHref" target="_blank" rel="noopener noreferrer">
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+    <img
+      class="k9-hero-art"
+      src="/media/hero.svg"
+      width="640"
+      height="480"
+      alt="Ilustración de ejemplo: una persona y un perro frente al Cotopaxi."
+    />
+  </div>
+</section>
+
+<section class="k9-band" aria-labelledby="servicios-titulo">
+  <div class="k9-wrap">
+    <header class="k9-section-head">
+      <h2 id="servicios-titulo">Servicios</h2>
+      <p>Guardería, hospedaje, baños, educación y equipo de entrenamiento con retiro en el local.</p>
+    </header>
+    <div class="k9-cards">
+      @for (service of site.services; track service.slug) {
+        <app-service-card [service]="service" />
+      }
+    </div>
+  </div>
+</section>
+
+<section class="k9-band k9-band-pine" aria-labelledby="clase-titulo">
+  <div class="k9-wrap">
+    <header class="k9-section-head">
+      <h2 id="clase-titulo">{{ site.brand.hook }}</h2>
+      <p>Sin calendario todavía: dejas los datos y seguimos por WhatsApp.</p>
+    </header>
+    <ol class="k9-steps">
+      @for (step of site.steps; track step.title) {
+        <li>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.detail }}</p>
+        </li>
+      }
+    </ol>
+    <a class="k9-btn k9-btn-clay" routerLink="/clase-gratis">Quiero la clase gratis</a>
+  </div>
+</section>
+
+<section class="k9-band" aria-labelledby="galeria-titulo">
+  <div class="k9-wrap">
+    <header class="k9-section-head">
+      <p class="k9-chip">Ejemplo</p>
+      <h2 id="galeria-titulo">Antes y después</h2>
+      <p>Ilustraciones de ejemplo. Las fotos del centro todavía no están en el sitio.</p>
+    </header>
+    <div class="k9-gallery">
+      @for (pair of preview; track pair.id) {
+        <app-gallery-pair [pair]="pair" />
+      }
+    </div>
+    <a class="k9-text-link" routerLink="/galeria">Ver la galería</a>
+  </div>
+</section>
+
+<section class="k9-band" aria-labelledby="voces-titulo">
+  <div class="k9-wrap">
+    <header class="k9-section-head">
+      <p class="k9-chip">Ejemplo</p>
+      <h2 id="voces-titulo">Testimonios</h2>
+      <p>No hay reseñas reales cargadas. Estos textos son marcadores.</p>
+    </header>
+    <div class="k9-cards">
+      @for (voice of site.testimonials; track voice.id) {
+        <blockquote class="k9-card">
+          <p>{{ voice.quote }}</p>
+          <footer>{{ voice.attribution }}</footer>
+        </blockquote>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="k9-band" aria-labelledby="nosotros-titulo">
+  <div class="k9-wrap k9-split">
+    <div>
+      <h2 id="nosotros-titulo">Sobre nosotros</h2>
+      <p>{{ site.brand.proposal }}</p>
+      <p>
+        {{ site.brand.name }} trabaja en {{ site.address.line }}, {{ site.address.locality }}
+        ({{ site.address.region }}). {{ site.brand.experience }}
+      </p>
+      <a class="k9-text-link" routerLink="/nosotros">Conocer el centro</a>
+    </div>
+    <app-hours-panel />
+  </div>
+  <div class="k9-wrap">
+    <app-site-map />
+  </div>
+</section>

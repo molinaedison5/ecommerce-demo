@@ -13,6 +13,7 @@ ecommerce-demo/
 │   ├── src/BuildingBlocks/              Money, paginación, EF, Redis, health checks
 │   ├── src/Modules/
 │   │   ├── Catalog/                     corte vertical: listar productos
+│   │   ├── Inquiries/                   solicitudes de la clase gratis
 │   │   ├── Bookings/                    peluquería, veterinaria, guardería (cascarón)
 │   │   ├── Cart/                        cascarón
 │   │   ├── Orders/                      cascarón
@@ -34,11 +35,17 @@ Cada módulo de negocio tiene tres proyectos:
 
 El host solo referencia los proyectos Infrastructure. El orden del middleware (errores, logs, CORS, autenticación, autorización) vive ahí.
 
-PostgreSQL es una sola base. Cada módulo que persiste tiene su esquema y su `DbContext` (`catalog`, `users`). Redis cachea el listado de productos; si no responde, la lectura sigue contra la base. Los pagos implementan `IPaymentGateway`. El adaptador incluido se llama `fake` y no cobra. Otro proveedor se registra en `PaymentsModule` y se elige con `Payments:Provider`.
+PostgreSQL es una sola base. Cada módulo que persiste tiene su esquema y su `DbContext` (`catalog`, `inquiries`, `users`). Redis cachea el listado de productos; si no responde, la lectura sigue contra la base. Los pagos implementan `IPaymentGateway`. El adaptador incluido se llama `fake` y no cobra. Otro proveedor se registra en `PaymentsModule` y se elige con `Payments:Provider`.
 
-La autenticación es ASP.NET Identity con JWT (`POST /api/auth/register`, `POST /api/auth/login`, `GET /api/users/me`). No hay pantalla de login.
+La autenticación es ASP.NET Identity con JWT (`POST /api/auth/register`, `POST /api/auth/login`, `GET /api/users/me`). No hay pantalla de login. `GET /api/inquiries/free-classes` usa ese JWT para listar solicitudes. La pantalla de revisión queda pendiente del login.
 
-El frontend usa componentes standalone, signals, control flow `@if` / `@for` y renderizado en servidor. La página `/catalog` pide `GET /api/catalog/products`. Durante el SSR el servidor llama a `API_BASE_URL`; el navegador reutiliza esa respuesta vía `TransferState` y, en navegaciones posteriores, llama a `http://localhost:8080`.
+## Sitio público del Centro K-9
+
+La portada, los servicios, la galería, el horario y el formulario de la clase gratis están en el frontend. Los textos, precios, horario, ilustraciones y el origen canónico son contenido de ejemplo y viven en `frontend/src/app/content/site-content.ts`. El teléfono de WhatsApp está solo en `businessPhone` de ese archivo.
+
+`POST /api/inquiries/free-classes` guarda la solicitud en el esquema `inquiries`. No reserva un horario.
+
+El frontend usa componentes standalone, signals, control flow `@if` / `@for` y renderizado en servidor. La portada es `/`. La página `/catalog` pide `GET /api/catalog/products`. Durante el SSR el servidor llama a `API_BASE_URL`; el navegador reutiliza esa respuesta vía `TransferState` y, en navegaciones posteriores, llama a `http://localhost:8080`.
 
 ## Requisitos
 
@@ -130,8 +137,8 @@ Cómo añadir un módulo: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Qué queda fuera
 
-- Reservas, carrito, pedidos y cobro de verdad.
-- Pantalla de login y refresh tokens.
+- Reservas con calendario, carrito, pedidos y cobro de verdad.
+- Pantalla de login, refresh tokens y una vista para revisar las solicitudes (el listado ya está protegido con JWT).
 - Generador automático del cliente Angular (el contrato ya se emite; el cliente del catálogo se mantiene a mano).
 - Migraciones como job separado del proceso web. Hoy se aplican al arrancar si `Database:ApplyMigrationsOnStartup` es true.
 - Swagger restringido en producción. En este esqueleto queda abierto para poder explorar la API.

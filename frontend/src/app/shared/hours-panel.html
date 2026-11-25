@@ -1,0 +1,13 @@
+<section class="k9-panel" aria-labelledby="horario-titulo">
+  <p class="k9-chip">Ejemplo</p>
+  <h2 id="horario-titulo">Horario</h2>
+  <dl class="k9-hours">
+    @for (slot of site.hours; track slot.label) {
+      <div>
+        <dt>{{ slot.label }}</dt>
+        <dd>{{ slot.value }}</dd>
+      </div>
+    }
+  </dl>
+  <p class="k9-note">Horario de ejemplo. Confírmalo antes de publicar el sitio.</p>
+</section>

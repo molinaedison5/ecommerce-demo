@@ -1,18 +1,17 @@
-<section class="page">
-  <header>
-    <h1>Servicios</h1>
-    <p>El módulo Bookings reserva estos cuidados. Esta pantalla solo marca el límite del módulo.</p>
-  </header>
-  <div class="grid">
-    @for (offering of offerings; track offering.kind) {
-      <mat-card appearance="outlined">
-        <mat-card-header>
-          <mat-card-title>{{ offering.kind }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ offering.detail }}</p>
-        </mat-card-content>
-      </mat-card>
-    }
+<section class="k9-page">
+  <div class="k9-wrap">
+    <header class="k9-section-head">
+      <p class="k9-eyebrow">Latacunga</p>
+      <h1>Servicios</h1>
+      <p>
+        Guardería canina, hospedaje, baños, adiestramiento y productos de entrenamiento con retiro en
+        el local. Los precios son de ejemplo.
+      </p>
+    </header>
+    <div class="k9-cards">
+      @for (service of site.services; track service.slug) {
+        <app-service-card [service]="service" />
+      }
+    </div>
   </div>
 </section>

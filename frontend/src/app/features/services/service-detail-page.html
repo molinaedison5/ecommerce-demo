@@ -1,0 +1,43 @@
+<section class="k9-page">
+  <div class="k9-wrap k9-prose">
+    @if (service(); as item) {
+      <p class="k9-eyebrow">
+        <a routerLink="/servicios">Servicios</a>
+      </p>
+      <p class="k9-chip">Precio de ejemplo</p>
+      <h1>{{ item.name }}</h1>
+      <p class="k9-price">
+        <strong>{{ item.priceFrom }}</strong>
+        <span>{{ item.priceDetail }}</span>
+      </p>
+      <p class="k9-lead">{{ item.summary }}</p>
+      <h2>Qué incluye</h2>
+      <ul>
+        @for (point of item.includes; track point) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+      @if (item.requirements.length > 0) {
+        <h2>Requisitos</h2>
+        <ul>
+          @for (requirement of item.requirements; track requirement) {
+            <li>{{ requirement }}</li>
+          }
+        </ul>
+      }
+      <div class="k9-actions">
+        <a class="k9-btn k9-btn-clay" routerLink="/clase-gratis">Agenda tu clase GRATIS</a>
+        <a class="k9-btn k9-btn-pine" [href]="whatsappHref()" target="_blank" rel="noopener noreferrer">
+          WhatsApp sobre este servicio
+        </a>
+        @if (item.catalogLink) {
+          <a class="k9-btn k9-btn-line" routerLink="/catalog">Ver productos de ejemplo</a>
+        }
+      </div>
+    } @else {
+      <h1>No encontramos ese servicio</h1>
+      <p>El enlace no coincide con la oferta del Centro K-9.</p>
+      <a class="k9-btn k9-btn-pine" routerLink="/servicios">Ver servicios</a>
+    }
+  </div>
+</section>
